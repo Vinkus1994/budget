@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <!-- IMPORTANT iPhone PWA -->
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Budget — App perso</title>
 
@@ -31,7 +30,6 @@
       -webkit-text-size-adjust: 100%;
     }
 
-    /* ✅ Safe area iPhone + padding mobile */
     .wrap{
       max-width:980px;
       margin:0 auto;
@@ -43,25 +41,15 @@
     }
 
     header{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      padding:6px 0 12px;
-      flex-wrap:wrap;
+      display:flex;align-items:flex-start;justify-content:space-between;
+      gap:12px;padding:6px 0 12px;flex-wrap:wrap;
     }
     .brand{display:flex;align-items:center;gap:10px;min-width:220px}
     .logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--pri),#64748b);box-shadow:var(--shadow);flex:0 0 auto}
     h1{font-size:20px;margin:0}
     .sub{font-size:13px;color:var(--muted);margin-top:2px}
 
-    .top-actions{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      flex:1 1 auto;
-    }
+    .top-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;flex:1 1 auto}
 
     button{
       border:0;border-radius:14px;
@@ -74,48 +62,18 @@
     button.danger{background:#991b1b}
     button.alt{background:#475569}
 
-    .btn-sm{
-      padding:9px 10px;
-      font-size:12px;
-      border-radius:12px;
-      box-shadow:none;
-      white-space:nowrap;
-    }
+    .btn-sm{padding:9px 10px;font-size:12px;border-radius:12px;box-shadow:none;white-space:nowrap}
 
-    /* Desktop grid */
-    .grid{
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:14px;
-      align-items:start;
-    }
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;align-items:start}
 
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--r);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-    .card-h{
-      padding:14px 16px;
-      border-bottom:1px solid var(--line);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+    .card-h{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}
     .card-h b{font-size:14px}
     .card-b{padding:16px}
 
     .row{display:flex;gap:10px;flex-wrap:wrap}
     .kpi{display:grid;gap:10px;grid-template-columns:1fr 1fr}
-    .k{
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:14px;
-      background:#fbfbfc;
-    }
+    .k{border:1px solid var(--line);border-radius:16px;padding:14px;background:#fbfbfc}
     .k .t{font-size:12px;color:var(--muted)}
     .k .v{font-size:24px;font-weight:900;margin-top:6px;letter-spacing:-.02em}
     .k .s{font-size:12px;color:var(--muted);margin-top:4px}
@@ -132,63 +90,25 @@
 
     form{display:grid;gap:10px}
     label{font-size:12px;color:var(--muted)}
-    input,select{
-      width:100%;
-      padding:11px 12px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background:#fff;
-      outline:none;
-      font-size:14px;
-    }
+    input,select{width:100%;padding:11px 12px;border-radius:14px;border:1px solid var(--line);background:#fff;outline:none;font-size:14px}
     input:focus,select:focus{border-color:#cbd5e1;box-shadow:0 0 0 4px rgba(100,116,139,.12)}
     .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
-    .actions4{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap:8px;
-      align-items:stretch;
-    }
+    .actions4{display:grid;grid-template-columns: repeat(4, 1fr);gap:8px;align-items:stretch}
 
     .list{display:flex;flex-direction:column;gap:10px}
-    .item{
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:12px;
-      background:#fff;
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      align-items:center;
-    }
+    .item{border:1px solid var(--line);border-radius:16px;padding:12px;background:#fff;display:flex;justify-content:space-between;gap:12px;align-items:center}
     .item .left{display:flex;flex-direction:column;gap:4px;min-width:0}
     .item .cat{font-weight:900}
     .item .meta{font-size:12px;color:var(--muted)}
     .item .amt{font-weight:900}
-    .tag{
-      display:inline-flex;align-items:center;gap:6px;
-      padding:4px 8px;border-radius:999px;border:1px solid var(--line);background:#fff;
-      font-size:11px;font-weight:800;color:#0f172a;width:fit-content
-    }
+    .tag{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:11px;font-weight:800;color:#0f172a;width:fit-content}
     .x{border:1px solid var(--line);background:#fff;color:#111827;border-radius:12px;padding:8px 10px;cursor:pointer}
     .hint{font-size:12px;color:var(--muted);line-height:1.35}
     .hide{display:none!important}
     .sep{height:1px;background:var(--line);margin:10px 0}
 
-    .toast{
-      position:fixed;
-      left:50%;
-      bottom:calc(14px + env(safe-area-inset-bottom));
-      transform:translateX(-50%);
-      background:#111827;color:#fff;
-      padding:10px 12px;border-radius:14px;
-      opacity:0;pointer-events:none;
-      transition:.25s;
-      box-shadow:var(--shadow);
-      font-size:13px;
-      z-index:50
-    }
+    .toast{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#111827;color:#fff;padding:10px 12px;border-radius:14px;opacity:0;pointer-events:none;transition:.25s;box-shadow:var(--shadow);font-size:13px;z-index:50}
     .toast.show{opacity:1}
 
     .overlay{position:fixed;inset:0;background:rgba(15,23,42,.45);display:flex;align-items:center;justify-content:center;padding:18px;z-index:100}
@@ -197,7 +117,7 @@
     .welcome-h b{font-size:15px}
     .welcome-b{padding:18px}
 
-    /* ✅ MOBILE FIRST: layout iPhone propre */
+    /* ✅ Mobile layout */
     @media (max-width: 860px){
       header{flex-direction:column;align-items:stretch}
       .top-actions{justify-content:stretch}
@@ -208,19 +128,16 @@
       .card-h{padding:12px 14px}
       .card-b{padding:14px}
 
-      .kpi{grid-template-columns:1fr}     /* ✅ KPI en 1 colonne */
-      .two{grid-template-columns:1fr}     /* ✅ Formulaires en 1 colonne */
-      .actions4{grid-template-columns:repeat(2,1fr)} /* ✅ boutons 2x2 sur mobile */
-
-      .item{align-items:flex-start}
-      .x{padding:8px 10px}
+      .kpi{grid-template-columns:1fr}
+      .two{grid-template-columns:1fr}
+      .actions4{grid-template-columns:repeat(2,1fr)}
 
       /* Swipe wrapper */
       .grid.swipe-mobile{display:block}
       .mobileTabs{display:flex;gap:8px;margin:0 0 10px}
       .mobileTabs button{flex:1;border-radius:14px}
 
-      .swipeWrap{position:relative;overflow:hidden;border-radius:0}
+      .swipeWrap{position:relative;overflow:hidden}
       .swipeTrack{
         display:flex;
         width:200%;
@@ -232,18 +149,19 @@
       .swipeTrack.dragging{transition:none}
     }
 
-    /* Desktop: on garde la grille normale */
     @media (min-width: 861px){
       .mobileTabs{display:none}
       .swipeWrap{display:contents}
       .swipeTrack{display:contents;width:auto;transform:none !important}
       .swipePage{width:auto;flex:auto}
     }
+
+    /* Cache l’UI swipe quand l’historique est vide */
+    .mobileTabs.disabled { display:none !important; }
   </style>
 </head>
 
 <body>
-  <!-- Page 1 : soldes actuels -->
   <div class="overlay hide" id="welcomeOverlay">
     <div class="welcome">
       <div class="welcome-h">
@@ -288,7 +206,7 @@
     </header>
 
     <div class="grid swipe-mobile" id="gridMain">
-      <div class="mobileTabs">
+      <div class="mobileTabs" id="mobileTabs">
         <button class="ghost" type="button" id="tabResume">Résumé</button>
         <button class="ghost" type="button" id="tabHistory">Historique</button>
       </div>
@@ -468,8 +386,8 @@
       });
     }
 
-    const KEY_SETTINGS = "bb_settings_v17";
-    const KEY_MOVES = "bb_moves_v17";
+    const KEY_SETTINGS = "bb_settings_v18";
+    const KEY_MOVES = "bb_moves_v18";
     const $ = (id) => document.getElementById(id);
     const state = { settings: null, moves: [] };
 
@@ -519,7 +437,6 @@
 
     function sameOrAfter(a,b){ return a.getTime() >= b.getTime(); }
     function before(a,b){ return a.getTime() < b.getTime(); }
-
     function inPeriod(dateISO, p){
       const d = new Date(dateISO);
       return sameOrAfter(d, p.start) && before(d, p.endExclusive);
@@ -662,6 +579,9 @@
         $("emptyTxt").classList.remove("hide");
         $("countTxt").textContent = "0 mouvement";
         setStatePill(999);
+
+        // 🔒 pas d'historique => swipe OFF
+        if (window.__setHistoryEnabled) window.__setHistoryEnabled(false);
         return;
       }
 
@@ -681,6 +601,10 @@
       const savingsReal  = savingsBase + all.toSavingsAll - all.fromSavingsAll;
 
       const { periodMoves, credit, spent, toSavings, fromSavings } = compute(period);
+
+      // ✅ Swipe UNIQUEMENT s'il y a un historique sur la période
+      if (window.__setHistoryEnabled) window.__setHistoryEnabled(periodMoves.length > 0);
+
       const remaining = (credit - spent - toSavings + fromSavings);
 
       const dLeft = daysRemaining(period);
@@ -847,37 +771,51 @@
     }else{
       $("setupCard").dataset.forceOpen = "1";
     }
-    render();
 
-    // Swipe mobile
+    // Swipe mobile (actif UNIQUEMENT s'il y a un historique)
     (function(){
       const track = document.getElementById("swipeTrack");
       const wrap = document.getElementById("swipeWrap");
       const tabResume = document.getElementById("tabResume");
       const tabHistory = document.getElementById("tabHistory");
-      if(!track || !wrap) return;
+      const tabsWrap = document.getElementById("mobileTabs");
+      if(!track || !wrap || !tabResume || !tabHistory || !tabsWrap) return;
 
       let index = 0;
       let startX = 0, currentX = 0, isDown = false;
+      let historyEnabled = false;
+
       const isMobile = () => window.matchMedia("(max-width: 860px)").matches;
 
       function updateTabs(){
+        tabsWrap.classList.toggle("disabled", !historyEnabled);
         tabResume.classList.toggle("alt", index === 0);
         tabHistory.classList.toggle("alt", index === 1);
         tabResume.classList.toggle("ghost", index !== 0);
         tabHistory.classList.toggle("ghost", index !== 1);
       }
+
       function go(i){
+        if(!historyEnabled) i = 0;
         index = Math.max(0, Math.min(1, i));
         if(isMobile()) track.style.transform = `translateX(${-index * 100}%)`;
         updateTabs();
       }
 
+      window.__setHistoryEnabled = function(enabled){
+        historyEnabled = !!enabled;
+        if(!historyEnabled) index = 0;
+        go(index);
+      };
+
       tabResume.addEventListener("click", ()=> go(0));
-      tabHistory.addEventListener("click", ()=> go(1));
+      tabHistory.addEventListener("click", ()=> {
+        if(!historyEnabled) return;
+        go(1);
+      });
 
       wrap.addEventListener("touchstart", (e)=>{
-        if(!isMobile()) return;
+        if(!isMobile() || !historyEnabled) return;
         isDown = true;
         track.classList.add("dragging");
         startX = e.touches[0].clientX;
@@ -885,7 +823,7 @@
       }, {passive:true});
 
       wrap.addEventListener("touchmove", (e)=>{
-        if(!isMobile() || !isDown) return;
+        if(!isMobile() || !historyEnabled || !isDown) return;
         currentX = e.touches[0].clientX;
         const dx = currentX - startX;
         const w = wrap.clientWidth || 1;
@@ -895,7 +833,7 @@
       }, {passive:true});
 
       wrap.addEventListener("touchend", ()=>{
-        if(!isMobile() || !isDown) return;
+        if(!isMobile() || !historyEnabled || !isDown) return;
         isDown = false;
         track.classList.remove("dragging");
         const dx = currentX - startX;
@@ -908,6 +846,8 @@
       window.addEventListener("resize", ()=> go(index));
       go(0);
     })();
+
+    render();
   </script>
 </body>
 </html>
