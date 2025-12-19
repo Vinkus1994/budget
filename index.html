@@ -18,6 +18,7 @@
       --bg:#f6f7f9; --card:#fff; --ink:#111827; --muted:#6b7280; --line:#e5e7eb;
       --pri:#334155; --pri2:#e2e8f0; --ok:#16a34a; --warn:#f59e0b; --bad:#ef4444;
       --shadow: 0 10px 30px rgba(17,24,39,.06); --r:18px;
+      --grid-gap: 14px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -30,6 +31,7 @@
       -webkit-text-size-adjust: 100%;
     }
 
+    /* ✅ Safe area iPhone + padding mobile */
     .wrap{
       max-width:980px;
       margin:0 auto;
@@ -41,15 +43,25 @@
     }
 
     header{
-      display:flex;align-items:flex-start;justify-content:space-between;
-      gap:12px;padding:6px 0 12px;flex-wrap:wrap;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:6px 0 12px;
+      flex-wrap:wrap;
     }
     .brand{display:flex;align-items:center;gap:10px;min-width:220px}
     .logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--pri),#64748b);box-shadow:var(--shadow);flex:0 0 auto}
     h1{font-size:20px;margin:0}
     .sub{font-size:13px;color:var(--muted);margin-top:2px}
 
-    .top-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;flex:1 1 auto}
+    .top-actions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      flex:1 1 auto;
+    }
 
     button{
       border:0;border-radius:14px;
@@ -62,18 +74,48 @@
     button.danger{background:#991b1b}
     button.alt{background:#475569}
 
-    .btn-sm{padding:9px 10px;font-size:12px;border-radius:12px;box-shadow:none;white-space:nowrap}
+    .btn-sm{
+      padding:9px 10px;
+      font-size:12px;
+      border-radius:12px;
+      box-shadow:none;
+      white-space:nowrap;
+    }
 
-    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;align-items:start}
+    /* Desktop grid */
+    .grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap: var(--grid-gap);
+      align-items:start;
+    }
 
-    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
-    .card-h{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .card-h{
+      padding:14px 16px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
     .card-h b{font-size:14px}
     .card-b{padding:16px}
 
     .row{display:flex;gap:10px;flex-wrap:wrap}
     .kpi{display:grid;gap:10px;grid-template-columns:1fr 1fr}
-    .k{border:1px solid var(--line);border-radius:16px;padding:14px;background:#fbfbfc}
+    .k{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+      background:#fbfbfc;
+    }
     .k .t{font-size:12px;color:var(--muted)}
     .k .v{font-size:24px;font-weight:900;margin-top:6px;letter-spacing:-.02em}
     .k .s{font-size:12px;color:var(--muted);margin-top:4px}
@@ -90,25 +132,63 @@
 
     form{display:grid;gap:10px}
     label{font-size:12px;color:var(--muted)}
-    input,select{width:100%;padding:11px 12px;border-radius:14px;border:1px solid var(--line);background:#fff;outline:none;font-size:14px}
+    input,select{
+      width:100%;
+      padding:11px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
+      outline:none;
+      font-size:14px;
+    }
     input:focus,select:focus{border-color:#cbd5e1;box-shadow:0 0 0 4px rgba(100,116,139,.12)}
     .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
-    .actions4{display:grid;grid-template-columns: repeat(4, 1fr);gap:8px;align-items:stretch}
+    .actions4{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:8px;
+      align-items:stretch;
+    }
 
     .list{display:flex;flex-direction:column;gap:10px}
-    .item{border:1px solid var(--line);border-radius:16px;padding:12px;background:#fff;display:flex;justify-content:space-between;gap:12px;align-items:center}
+    .item{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      background:#fff;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+    }
     .item .left{display:flex;flex-direction:column;gap:4px;min-width:0}
     .item .cat{font-weight:900}
     .item .meta{font-size:12px;color:var(--muted)}
     .item .amt{font-weight:900}
-    .tag{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:11px;font-weight:800;color:#0f172a;width:fit-content}
+    .tag{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:4px 8px;border-radius:999px;border:1px solid var(--line);background:#fff;
+      font-size:11px;font-weight:800;color:#0f172a;width:fit-content
+    }
     .x{border:1px solid var(--line);background:#fff;color:#111827;border-radius:12px;padding:8px 10px;cursor:pointer}
     .hint{font-size:12px;color:var(--muted);line-height:1.35}
     .hide{display:none!important}
     .sep{height:1px;background:var(--line);margin:10px 0}
 
-    .toast{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#111827;color:#fff;padding:10px 12px;border-radius:14px;opacity:0;pointer-events:none;transition:.25s;box-shadow:var(--shadow);font-size:13px;z-index:50}
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:calc(14px + env(safe-area-inset-bottom));
+      transform:translateX(-50%);
+      background:#111827;color:#fff;
+      padding:10px 12px;border-radius:14px;
+      opacity:0;pointer-events:none;
+      transition:.25s;
+      box-shadow:var(--shadow);
+      font-size:13px;
+      z-index:50
+    }
     .toast.show{opacity:1}
 
     .overlay{position:fixed;inset:0;background:rgba(15,23,42,.45);display:flex;align-items:center;justify-content:center;padding:18px;z-index:100}
@@ -117,7 +197,7 @@
     .welcome-h b{font-size:15px}
     .welcome-b{padding:18px}
 
-    /* ✅ Mobile layout */
+    /* ✅ MOBILE FIRST: layout iPhone propre */
     @media (max-width: 860px){
       header{flex-direction:column;align-items:stretch}
       .top-actions{justify-content:stretch}
@@ -128,18 +208,20 @@
       .card-h{padding:12px 14px}
       .card-b{padding:14px}
 
-      .kpi{grid-template-columns:1fr}
-      .two{grid-template-columns:1fr}
+      .kpi{grid-template-columns:1fr}     /* ✅ KPI en 1 colonne */
+      .two{grid-template-columns:1fr}     /* ✅ Formulaires en 1 colonne */
 
-      /* ✅ ICI: boutons un sous l'autre */
+      /* ✅ Boutons en colonne (ta demande) */
       .actions4{grid-template-columns:1fr}
+
+      #setupCard{width:100%;}
 
       /* Swipe wrapper */
       .grid.swipe-mobile{display:block}
       .mobileTabs{display:flex;gap:8px;margin:0 0 10px}
       .mobileTabs button{flex:1;border-radius:14px}
 
-      .swipeWrap{position:relative;overflow:hidden}
+      .swipeWrap{position:relative;overflow:hidden;border-radius:0}
       .swipeTrack{
         display:flex;
         width:200%;
@@ -151,11 +233,15 @@
       .swipeTrack.dragging{transition:none}
     }
 
+    /* Desktop: on garde la grille normale */
     @media (min-width: 861px){
       .mobileTabs{display:none}
       .swipeWrap{display:contents}
       .swipeTrack{display:contents;width:auto;transform:none !important}
       .swipePage{width:auto;flex:auto}
+
+      /* ✅ Réglages = même largeur que Résumé (1.2fr sur 1.2fr+.8fr = 60%) */
+      #setupCard{width: calc((100% - var(--grid-gap)) * 0.6); margin-right:auto;}
     }
 
     /* Cache l’UI swipe quand l’historique est vide */
@@ -164,6 +250,7 @@
 </head>
 
 <body>
+  <!-- Page 1 : soldes actuels -->
   <div class="overlay hide" id="welcomeOverlay">
     <div class="welcome">
       <div class="welcome-h">
@@ -439,6 +526,7 @@
 
     function sameOrAfter(a,b){ return a.getTime() >= b.getTime(); }
     function before(a,b){ return a.getTime() < b.getTime(); }
+
     function inPeriod(dateISO, p){
       const d = new Date(dateISO);
       return sameOrAfter(d, p.start) && before(d, p.endExclusive);
