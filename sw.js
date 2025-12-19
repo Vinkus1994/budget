@@ -1,4 +1,4 @@
-const CACHE_NAME = "budget-cache-v1";
+const CACHE_NAME = "budget-cache-v5";
 const ASSETS = [
   "./",
   "./index.html",
@@ -34,3 +34,4 @@ self.addEventListener("fetch", (event) => {
     }).catch(() => cached))
   );
 });
+
