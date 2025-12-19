@@ -1,9 +1,9 @@
-
 <!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- IMPORTANT iPhone PWA -->
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Budget — App perso</title>
 
   <!-- PWA -->
@@ -12,8 +12,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Budget">
-  <!-- iOS préfère un PNG apple-touch-icon. On met un SVG fallback (ça marche sur beaucoup d’appareils, mais pas tous). -->
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="icon.svg">
 
   <style>
     :root{
@@ -22,19 +21,47 @@
       --shadow: 0 10px 30px rgba(17,24,39,.06); --r:18px;
     }
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       background: radial-gradient(900px 500px at 15% 0%, #eef2ff 0%, var(--bg) 60%), var(--bg);
       color:var(--ink);
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
     }
-    .wrap{max-width:980px;margin:0 auto;padding:18px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0 14px}
-    .brand{display:flex;align-items:center;gap:10px}
-    .logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--pri),#64748b);box-shadow:var(--shadow)}
+
+    /* ✅ Safe area iPhone + padding mobile */
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:
+        calc(12px + env(safe-area-inset-top))
+        calc(12px + env(safe-area-inset-right))
+        calc(18px + env(safe-area-inset-bottom))
+        calc(12px + env(safe-area-inset-left));
+    }
+
+    header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      padding:6px 0 12px;
+      flex-wrap:wrap;
+    }
+    .brand{display:flex;align-items:center;gap:10px;min-width:220px}
+    .logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--pri),#64748b);box-shadow:var(--shadow);flex:0 0 auto}
     h1{font-size:20px;margin:0}
     .sub{font-size:13px;color:var(--muted);margin-top:2px}
-    .top-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+    .top-actions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      flex:1 1 auto;
+    }
 
     button{
       border:0;border-radius:14px;
@@ -48,25 +75,47 @@
     button.alt{background:#475569}
 
     .btn-sm{
-      padding:8px 10px;
+      padding:9px 10px;
       font-size:12px;
       border-radius:12px;
       box-shadow:none;
       white-space:nowrap;
     }
 
-    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;align-items:start}
-    @media (max-width:860px){.grid{grid-template-columns:1fr}}
+    /* Desktop grid */
+    .grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:14px;
+      align-items:start;
+    }
 
-    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
-    .card-h{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .card-h{
+      padding:14px 16px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
     .card-h b{font-size:14px}
     .card-b{padding:16px}
 
     .row{display:flex;gap:10px;flex-wrap:wrap}
     .kpi{display:grid;gap:10px;grid-template-columns:1fr 1fr}
-    @media (max-width:520px){.kpi{grid-template-columns:1fr}}
-    .k{border:1px solid var(--line);border-radius:16px;padding:14px;background:#fbfbfc}
+    .k{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+      background:#fbfbfc;
+    }
     .k .t{font-size:12px;color:var(--muted)}
     .k .v{font-size:24px;font-weight:900;margin-top:6px;letter-spacing:-.02em}
     .k .s{font-size:12px;color:var(--muted);margin-top:4px}
@@ -83,10 +132,17 @@
 
     form{display:grid;gap:10px}
     label{font-size:12px;color:var(--muted)}
-    input,select{width:100%;padding:11px 12px;border-radius:14px;border:1px solid var(--line);background:#fff;outline:none;font-size:14px}
+    input,select{
+      width:100%;
+      padding:11px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
+      outline:none;
+      font-size:14px;
+    }
     input:focus,select:focus{border-color:#cbd5e1;box-shadow:0 0 0 4px rgba(100,116,139,.12)}
     .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    @media (max-width:520px){.two{grid-template-columns:1fr}}
 
     .actions4{
       display:grid;
@@ -94,22 +150,45 @@
       gap:8px;
       align-items:stretch;
     }
-    @media (max-width:560px){ .actions4{ grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width:360px){ .actions4{ grid-template-columns: 1fr; } }
 
     .list{display:flex;flex-direction:column;gap:10px}
-    .item{border:1px solid var(--line);border-radius:16px;padding:12px;background:#fff;display:flex;justify-content:space-between;gap:12px;align-items:center}
-    .item .left{display:flex;flex-direction:column;gap:4px}
+    .item{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      background:#fff;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+    }
+    .item .left{display:flex;flex-direction:column;gap:4px;min-width:0}
     .item .cat{font-weight:900}
     .item .meta{font-size:12px;color:var(--muted)}
     .item .amt{font-weight:900}
-    .tag{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:11px;font-weight:800;color:#0f172a;width:fit-content}
+    .tag{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:4px 8px;border-radius:999px;border:1px solid var(--line);background:#fff;
+      font-size:11px;font-weight:800;color:#0f172a;width:fit-content
+    }
     .x{border:1px solid var(--line);background:#fff;color:#111827;border-radius:12px;padding:8px 10px;cursor:pointer}
     .hint{font-size:12px;color:var(--muted);line-height:1.35}
     .hide{display:none!important}
     .sep{height:1px;background:var(--line);margin:10px 0}
 
-    .toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 12px;border-radius:14px;opacity:0;pointer-events:none;transition:.25s;box-shadow:var(--shadow);font-size:13px;z-index:50}
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:calc(14px + env(safe-area-inset-bottom));
+      transform:translateX(-50%);
+      background:#111827;color:#fff;
+      padding:10px 12px;border-radius:14px;
+      opacity:0;pointer-events:none;
+      transition:.25s;
+      box-shadow:var(--shadow);
+      font-size:13px;
+      z-index:50
+    }
     .toast.show{opacity:1}
 
     .overlay{position:fixed;inset:0;background:rgba(15,23,42,.45);display:flex;align-items:center;justify-content:center;padding:18px;z-index:100}
@@ -118,31 +197,47 @@
     .welcome-h b{font-size:15px}
     .welcome-b{padding:18px}
 
-    /* --- Swipe mobile Résumé <-> Historique --- */
+    /* ✅ MOBILE FIRST: layout iPhone propre */
     @media (max-width: 860px){
-      .grid.swipe-mobile{ display:block; }
-      .swipeWrap{ position:relative; overflow:hidden; }
+      header{flex-direction:column;align-items:stretch}
+      .top-actions{justify-content:stretch}
+      .top-actions button{flex:1}
+
+      .grid{grid-template-columns:1fr;gap:12px}
+
+      .card-h{padding:12px 14px}
+      .card-b{padding:14px}
+
+      .kpi{grid-template-columns:1fr}     /* ✅ KPI en 1 colonne */
+      .two{grid-template-columns:1fr}     /* ✅ Formulaires en 1 colonne */
+      .actions4{grid-template-columns:repeat(2,1fr)} /* ✅ boutons 2x2 sur mobile */
+
+      .item{align-items:flex-start}
+      .x{padding:8px 10px}
+
+      /* Swipe wrapper */
+      .grid.swipe-mobile{display:block}
+      .mobileTabs{display:flex;gap:8px;margin:0 0 10px}
+      .mobileTabs button{flex:1;border-radius:14px}
+
+      .swipeWrap{position:relative;overflow:hidden;border-radius:0}
       .swipeTrack{
         display:flex;
         width:200%;
         touch-action: pan-y;
         transition: transform .25s ease;
+        will-change: transform;
       }
-      .swipePage{ width:100%; flex:0 0 100%; }
-      .swipeTrack.dragging{ transition:none; }
-
-      .mobileTabs{
-        display:flex;
-        gap:8px;
-        margin-bottom:10px;
-      }
-      .mobileTabs button{ flex:1; border-radius:14px; }
+      .swipePage{width:100%;flex:0 0 100%}
+      .swipeTrack.dragging{transition:none}
     }
+
+    /* Desktop: on garde la grille normale */
     @media (min-width: 861px){
-      .mobileTabs{ display:none; }
-      .swipeWrap{ display:contents; }
-      .swipeTrack{ display:contents; width:auto; transform:none !important; }
-      .swipePage{ width:auto; flex:auto; }
+      .mobileTabs{display:none}
+      .swipeWrap{display:contents}
+      .swipeTrack{display:contents;width:auto;transform:none !important}
+      .swipePage{width:auto;flex:auto}
     }
   </style>
 </head>
@@ -201,7 +296,7 @@
       <div class="swipeWrap" id="swipeWrap">
         <div class="swipeTrack" id="swipeTrack">
 
-          <!-- PAGE 1: Résumé -->
+          <!-- PAGE 1 -->
           <div class="swipePage">
             <section class="card">
               <div class="card-h">
@@ -309,7 +404,7 @@
             </section>
           </div>
 
-          <!-- PAGE 2: Historique -->
+          <!-- PAGE 2 -->
           <div class="swipePage">
             <section class="card">
               <div class="card-h">
@@ -366,15 +461,15 @@
   <div class="toast" id="toast">OK</div>
 
   <script>
-    // --- PWA: service worker ---
+    // PWA SW
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker.register("./sw.js").catch(()=>{});
       });
     }
 
-    const KEY_SETTINGS = "bb_settings_v16";
-    const KEY_MOVES = "bb_moves_v16";
+    const KEY_SETTINGS = "bb_settings_v17";
+    const KEY_MOVES = "bb_moves_v17";
     const $ = (id) => document.getElementById(id);
     const state = { settings: null, moves: [] };
 
@@ -384,21 +479,25 @@
       t.classList.add("show");
       setTimeout(()=>t.classList.remove("show"), 1400);
     }
+
     function parseMoney(str){
       if(!str && str !== 0) return NaN;
       const s = String(str).replace(/\s/g,'').replace(',', '.');
       const n = Number(s);
       return Number.isFinite(n) ? n : NaN;
     }
+
     function fmtEUR(v){
       return new Intl.NumberFormat('fr-BE', { style:'currency', currency:'EUR' }).format(v);
     }
+
     function clamp(n,a,b){ return Math.max(a, Math.min(b, n)); }
 
     function load(){
       try{ const s = localStorage.getItem(KEY_SETTINGS); state.settings = s ? JSON.parse(s) : null; }catch{ state.settings = null; }
       try{ const e = localStorage.getItem(KEY_MOVES); state.moves = e ? JSON.parse(e) : []; }catch{ state.moves = []; }
     }
+
     function save(){
       localStorage.setItem(KEY_SETTINGS, JSON.stringify(state.settings));
       localStorage.setItem(KEY_MOVES, JSON.stringify(state.moves));
@@ -411,30 +510,37 @@
       const endExclusive = new Date(start.getFullYear(), start.getMonth()+1, startDay);
       return { start, endExclusive };
     }
+
     function rolling12Period(now=new Date()){
       const endExclusive = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
       const start = new Date(now); start.setMonth(start.getMonth()-12);
       return { start, endExclusive };
     }
+
     function sameOrAfter(a,b){ return a.getTime() >= b.getTime(); }
     function before(a,b){ return a.getTime() < b.getTime(); }
+
     function inPeriod(dateISO, p){
       const d = new Date(dateISO);
       return sameOrAfter(d, p.start) && before(d, p.endExclusive);
     }
+
     function daysRemaining(p){
       const now = new Date();
       const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
       return Math.floor((p.endExclusive.getTime() - today.getTime()) / (1000*60*60*24));
     }
+
     function niceDate(d){ return d.toLocaleDateString('fr-BE', { weekday:'short', day:'numeric', month:'short' }); }
     function niceDateTime(iso){
       const d = new Date(iso);
       return d.toLocaleString('fr-BE', { weekday:'short', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' });
     }
+
     function escapeHtml(s){
       return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
     }
+
     function setStatePill(perDay){
       const dot = $("dotState");
       const txt = $("stateTxt");
@@ -456,6 +562,7 @@
 
       return { periodMoves, credit, spent, toSavings, fromSavings };
     }
+
     function computeAll(){
       const creditAll = state.moves.filter(m => m.type === "credit").reduce((s,m)=> s + m.amount, 0);
       const spentAll  = state.moves.filter(m => m.type === "expense").reduce((s,m)=> s + m.amount, 0);
